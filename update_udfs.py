@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-#!/usr/bin/env python
-
 import os
 import snowflake.connector
 import pandas as pd 
