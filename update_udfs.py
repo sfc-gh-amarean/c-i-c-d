@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+#!/usr/bin/env python
+
 import os
 import snowflake.connector
 import pandas as pd 
@@ -7,6 +9,7 @@ import boto3
 from botocore.exceptions import ClientError
 import json
 import re
+import requests
 
 # Load Snowflake connection details from AWS Secrets Manager
 def get_sf_connection_details(secret_name,region_name):  
@@ -51,8 +54,12 @@ def update():
     )
 
     cur = ctx.cursor()
+    url = "https://raw.githubusercontent.com/iamontheinet/user-defined-functions/main/do_something_cool.py"
     custom_udf_file = "do_something_cool.py"
     stage_name = "@dash_files"
+
+    custom_udf_content = requests.get(url)
+    open(custom_udf_file, 'wb').write(custom_udf_content.content)
     cur.execute(f"PUT file://{custom_udf_file} {stage_name} OVERWRITE=True;")
     print(f"Uploaded new custom UDF file {custom_udf_file}")
 
