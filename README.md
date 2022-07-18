@@ -29,4 +29,4 @@ Setup
    * Downloads the latest version of the package off main branch from Repo 1 and uploads it to a Snowflake stage (where UDFs can access it)
    * Loops through all the registered UDFs that belong to the current database and schema, examines the imports, and prints out names of UDFs that are affected and use the updated package
 
-[Link to this repo.](https://github.com/iamontheinet/c-i-c-d/)
+[Link to this script.](https://github.com/iamontheinet/c-i-c-d/blob/main/update_udfs.py
