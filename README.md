@@ -34,3 +34,10 @@ This repo also contains a JSON file that has a list of packages to be updated wh
    * Loops through all the registered UDFs that belong to the current database and schema, examines the imports, and prints out names of UDFs that are affected and use the updated package
 
 ***Repo 2***: [Script to update packages](https://github.com/iamontheinet/c-i-c-d/blob/main/update_packages.py) and [List of packages](https://github.com/iamontheinet/c-i-c-d/blob/main/packages_list.json)
+
+___
+
+### Demo
+
+https://user-images.githubusercontent.com/1723932/179849117-141629bc-4fa9-4db2-9014-bdb74050c92b.mov
+
