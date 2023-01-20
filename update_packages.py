@@ -44,22 +44,22 @@ def update():
       print(f"***** Uploaded new package {package_file_name} to stage @{stage_name}")
       os.remove(package_file_name)
 
-      print(f"***** List of UDFs that use package {package_file_name}")
-      udfs_sql = f"SHOW USER FUNCTIONS"
-      for (udf_created_at, udf_name, udf_schema, col4, col5, col6, col7, col8, udf_signature, udf_description, udf_db, col12, col13, col14, col15, udf_language) in cur.execute(udfs_sql):
-        if (udf_language == "PYTHON" and 
-            udf_description == "user-defined function" and 
-            udf_db == DBT and 
-            udf_schema == SCH):
+#       print(f"***** List of UDFs that use package {package_file_name}")
+#       udfs_sql = f"SHOW USER FUNCTIONS"
+#       for (udf_created_at, udf_name, udf_schema, col4, col5, col6, col7, col8, udf_signature, udf_description, udf_db, col12, col13, col14, col15, udf_language) in cur.execute(udfs_sql):
+#         if (udf_language == "PYTHON" and 
+#             udf_description == "user-defined function" and 
+#             udf_db == DBT and 
+#             udf_schema == SCH):
 
-          #Extract UDF Name and Arguments 
-          #-- Regex input  "PREDICT_SALES(NUMBER, NUMBER, NUMBER, NUMBER, NUMBER, NUMBER) RETURN VARIANT"
-          #-- Regex output "PREDICT_SALES(NUMBER, NUMBER, NUMBER, NUMBER, NUMBER, NUMBER)"
-          udf_signature = re.findall(r"(.*?)RETURN",udf_signature)[0] 
-          desc_udf_sql = f"DESCRIBE FUNCTION {udf_signature}"
-          for (prop, val) in cur.execute(desc_udf_sql):
-            if (prop == "imports" and val.find(package_file_name) != -1):
-              print(f">>>>>>>>>> {udf_name}")
+#           #Extract UDF Name and Arguments 
+#           #-- Regex input  "PREDICT_SALES(NUMBER, NUMBER, NUMBER, NUMBER, NUMBER, NUMBER) RETURN VARIANT"
+#           #-- Regex output "PREDICT_SALES(NUMBER, NUMBER, NUMBER, NUMBER, NUMBER, NUMBER)"
+#           udf_signature = re.findall(r"(.*?)RETURN",udf_signature)[0] 
+#           desc_udf_sql = f"DESCRIBE FUNCTION {udf_signature}"
+#           for (prop, val) in cur.execute(desc_udf_sql):
+#             if (prop == "imports" and val.find(package_file_name) != -1):
+#               print(f">>>>>>>>>> {udf_name}")
   finally:
     ctx.close()
 
